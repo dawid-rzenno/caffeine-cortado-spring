@@ -4,31 +4,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 public class Ingredient {
-    private @Id
-    @GeneratedValue Long id;
-
-    private String name;
-
-    // Details
-    private String price;
-    private String category_id;
-
-    // Nutrients
-    private String calories;
-    private String proteins;
-    private String carbohydrates;
-    private String fats;
-
-    Ingredient() {}
-
-    public String getCalories() {
-        return calories;
-    }
-
-    public void setCalories(String calories) {
-        this.calories = calories;
-    }
-
     public Long getId() {
         return id;
     }
@@ -61,6 +36,14 @@ public class Ingredient {
         this.category_id = category_id;
     }
 
+    public String getCalories() {
+        return calories;
+    }
+
+    public void setCalories(String calories) {
+        this.calories = calories;
+    }
+
     public String getProteins() {
         return proteins;
     }
@@ -84,4 +67,21 @@ public class Ingredient {
     public void setFats(String fats) {
         this.fats = fats;
     }
+
+    private @Id
+    @GeneratedValue Long id;
+
+    private String name;
+
+    // Details
+    private String price;
+    private String category_id;
+
+    // Nutrients
+    private String calories;
+    private String proteins;
+    private String carbohydrates;
+    private String fats;
+
+    Ingredient() {}
 }
