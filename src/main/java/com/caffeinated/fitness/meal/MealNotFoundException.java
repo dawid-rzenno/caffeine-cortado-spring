@@ -1,4 +1,4 @@
-package com.caffeinated.fitness;
+package com.caffeinated.fitness.meal;
 
 public class MealNotFoundException extends RuntimeException {
 

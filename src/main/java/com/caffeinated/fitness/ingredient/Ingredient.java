@@ -1,4 +1,4 @@
-package com.caffeinated.fitness;
+package com.caffeinated.fitness.ingredient;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

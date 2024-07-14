@@ -1,4 +1,4 @@
-package com.caffeinated.fitness;
+package com.caffeinated.fitness.ingredient;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

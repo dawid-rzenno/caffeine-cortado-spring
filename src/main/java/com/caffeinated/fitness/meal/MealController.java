@@ -1,4 +1,4 @@
-package com.caffeinated.fitness;
+package com.caffeinated.fitness.meal;
 
 import org.springframework.web.bind.annotation.*;
 

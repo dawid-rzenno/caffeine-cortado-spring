@@ -1,5 +1,6 @@
-package com.caffeinated.fitness;
+package com.caffeinated.fitness.meal;
 
+import com.caffeinated.fitness.ingredient.Ingredient;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
