@@ -1,7 +1,10 @@
 package com.caffeinated.fitness.ingredient;
 
-import java.util.List;
-
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,8 +18,15 @@ class IngredientController {
     }
 
     @GetMapping("/ingredient")
-    List<Ingredient> all() {
-        return repository.findAll();
+    Page<Ingredient> all(@Param("name") String name, Pageable p) {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(name);
+
+        ExampleMatcher matcher = ExampleMatcher.matching().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+
+        Example<Ingredient> example = Example.of(ingredient, matcher);
+
+        return repository.findAll(example, p);
     }
 
     @PostMapping("/ingredient")

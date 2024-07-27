@@ -1,5 +1,10 @@
 package com.caffeinated.fitness.shoppingList;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +20,15 @@ class ShoppingListController {
     }
 
     @GetMapping("/shopping-list")
-    List<ShoppingList> all() {
-        return repository.findAll();
+    Page<ShoppingList> all(@Param("name") String name, Pageable p) {
+        ShoppingList shoppingList = new ShoppingList();
+        shoppingList.setName(name);
+
+        ExampleMatcher matcher = ExampleMatcher.matching().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+
+        Example<ShoppingList> example = Example.of(shoppingList, matcher);
+
+        return repository.findAll(example, p);
     }
 
     @PostMapping("/shopping-list")

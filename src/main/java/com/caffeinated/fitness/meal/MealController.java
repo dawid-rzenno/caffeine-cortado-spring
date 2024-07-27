@@ -1,5 +1,10 @@
 package com.caffeinated.fitness.meal;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +20,15 @@ class MealController {
     }
 
     @GetMapping("/meal")
-    List<Meal> all() {
-        return repository.findAll();
+    Page<Meal> all(@Param("name") String name, Pageable p) {
+        Meal meal = new Meal();
+        meal.setName(name);
+
+        ExampleMatcher matcher = ExampleMatcher.matching().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+
+        Example<Meal> example = Example.of(meal, matcher);
+
+        return repository.findAll(example, p);
     }
 
     @PostMapping("/meal")
