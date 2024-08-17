@@ -1,4 +1,4 @@
-package com.caffeinated.hq.eisenhower.task;
+package com.caffeinated.productivity.eisenhower.task;
 
 public class TaskNotFoundException extends RuntimeException {
 

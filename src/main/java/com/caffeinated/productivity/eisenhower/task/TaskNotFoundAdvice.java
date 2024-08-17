@@ -1,4 +1,4 @@
-package com.caffeinated.hq.eisenhower.task;
+package com.caffeinated.productivity.eisenhower.task;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;

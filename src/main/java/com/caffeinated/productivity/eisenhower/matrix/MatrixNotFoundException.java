@@ -1,4 +1,4 @@
-package com.caffeinated.hq.eisenhower.matrix;
+package com.caffeinated.productivity.eisenhower.matrix;
 
 public class MatrixNotFoundException extends RuntimeException {
 

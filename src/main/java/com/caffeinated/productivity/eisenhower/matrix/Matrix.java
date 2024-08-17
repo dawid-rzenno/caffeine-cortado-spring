@@ -1,4 +1,4 @@
-package com.caffeinated.hq.eisenhower.task;
+package com.caffeinated.productivity.eisenhower.matrix;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-public class Task {
+public class Matrix {
 
     private @Id
     @GeneratedValue Long id;

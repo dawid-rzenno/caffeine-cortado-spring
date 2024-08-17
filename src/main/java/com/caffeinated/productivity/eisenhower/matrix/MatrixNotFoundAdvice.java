@@ -1,4 +1,4 @@
-package com.caffeinated.hq.eisenhower.matrix;
+package com.caffeinated.productivity.eisenhower.matrix;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
