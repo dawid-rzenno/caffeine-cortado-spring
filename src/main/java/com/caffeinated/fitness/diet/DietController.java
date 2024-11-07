@@ -32,8 +32,15 @@ class DietController {
     }
 
     @PostMapping("/diet")
-    Diet newDiet(@RequestBody Diet newDiet) {
-        return repository.save(newDiet);
+    Diet newDiet() {
+        Diet diet = new Diet();
+        diet.setName("");
+        diet.setDescription("");
+
+        Diet savedDiet = repository.save(diet);
+        savedDiet.setName("Diet Draft #" + savedDiet.getId());
+
+        return repository.save(savedDiet);
     }
 
     @GetMapping("/diet/{id}")
