@@ -1,4 +1,4 @@
-package com.caffeinated.fitness.diet;
+package com.caffeine.cortado.diet;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -6,8 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/food")
@@ -35,7 +33,6 @@ class DietController {
     Diet newDiet() {
         Diet diet = new Diet();
         diet.setName("");
-        diet.setDescription("");
 
         Diet savedDiet = repository.save(diet);
         savedDiet.setName("Diet Draft #" + savedDiet.getId());

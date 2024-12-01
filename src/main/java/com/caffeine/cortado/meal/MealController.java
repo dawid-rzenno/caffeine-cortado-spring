@@ -1,4 +1,4 @@
-package com.caffeinated.fitness.shoppingList;
+package com.caffeine.cortado.meal;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -7,44 +7,42 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/food")
-class ShoppingListController {
+class MealController {
 
-    private final ShoppingListRepository repository;
+    private final MealRepository repository;
 
-    ShoppingListController(ShoppingListRepository repository) {
+    MealController(MealRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/shopping-list")
-    Page<ShoppingList> all(@Param("name") String name, Pageable p) {
-        ShoppingList shoppingList = new ShoppingList();
-        shoppingList.setName(name);
+    @GetMapping("/meal")
+    Page<Meal> all(@Param("name") String name, Pageable p) {
+        Meal meal = new Meal();
+        meal.setName(name);
 
         ExampleMatcher matcher = ExampleMatcher.matching().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
 
-        Example<ShoppingList> example = Example.of(shoppingList, matcher);
+        Example<Meal> example = Example.of(meal, matcher);
 
         return repository.findAll(example, p);
     }
 
-    @PostMapping("/shopping-list")
-    ShoppingList newShoppingList(@RequestBody ShoppingList newMeal) {
+    @PostMapping("/meal")
+    Meal newMeal(@RequestBody Meal newMeal) {
         return repository.save(newMeal);
     }
 
-    @GetMapping("/shopping-list/{id}")
-    ShoppingList one(@PathVariable Long id) {
+    @GetMapping("/meal/{id}")
+    Meal one(@PathVariable Long id) {
 
         return repository.findById(id)
-                .orElseThrow(() -> new ShoppingListNotFoundException(id));
+                .orElseThrow(() -> new MealNotFoundException(id));
     }
 
-    @PutMapping("/shopping-list/{id}")
-    ShoppingList replaceShoppingList(@RequestBody ShoppingList newMeal, @PathVariable Long id) {
+    @PutMapping("/meal/{id}")
+    Meal replaceMeal(@RequestBody Meal newMeal, @PathVariable Long id) {
 
         return repository.findById(id)
                 .map(meal -> {
@@ -56,8 +54,8 @@ class ShoppingListController {
                 });
     }
 
-    @DeleteMapping("/shopping-list/{id}")
-    void deleteShoppingList(@PathVariable Long id) {
+    @DeleteMapping("/meal/{id}")
+    void deleteMeal(@PathVariable Long id) {
         repository.deleteById(id);
     }
 }

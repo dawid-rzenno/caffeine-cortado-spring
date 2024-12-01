@@ -1,4 +1,4 @@
-package com.caffeinated.fitness.shoppingList;
+package com.caffeine.cortado.ingredient;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class ShoppingListNotFoundAdvice {
+public class IngredientNotFoundAdvice {
 
-    @ExceptionHandler(ShoppingListNotFoundException.class)
+    @ExceptionHandler(IngredientNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String shoppingListNotFoundHandler(ShoppingListNotFoundException ex) {
+    String ingredientNotFoundHandler(IngredientNotFoundException ex) {
         return ex.getMessage();
     }
 }

@@ -1,4 +1,4 @@
-package com.caffeinated.fitness.meal;
+package com.caffeine.cortado.meal;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,10 +1,13 @@
-package com.caffeinated.fitness.shoppingList;
+package com.caffeine.cortado.shoppingList;
 
-import com.caffeinated.fitness.ingredient.Ingredient;
+import com.caffeine.cortado.ingredient.Ingredient;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,9 +20,7 @@ public class ShoppingList {
     @GeneratedValue Long id;
 
     private String name;
-    private String description;
 
-    // Details
     private Float price;
 
     @ManyToMany()
@@ -29,6 +30,16 @@ public class ShoppingList {
             inverseJoinColumns = { @JoinColumn(name = "ingredient_id") }
     )
     private Set<Ingredient> ingredients = new HashSet<>();
+
+    @CreationTimestamp
+    private Date createdAt;
+
+    private Long createdBy;
+
+    @UpdateTimestamp
+    private Date updatedAt;
+
+    private Long updatedBy;
 
     ShoppingList() {}
 }

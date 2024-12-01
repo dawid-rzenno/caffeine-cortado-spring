@@ -1,4 +1,4 @@
-package com.caffeinated.fitness.ingredient;
+package com.caffeine.cortado.ingredient;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;

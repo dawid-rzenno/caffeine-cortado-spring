@@ -1,10 +1,13 @@
-package com.caffeinated.fitness.diet;
+package com.caffeine.cortado.diet;
 
-import com.caffeinated.fitness.meal.Meal;
+import com.caffeine.cortado.meal.Meal;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,9 +20,7 @@ public class Diet {
     @GeneratedValue Long id;
 
     private String name;
-    private String description;
 
-    // Details
     private Float price;
 
     @ManyToMany()
@@ -29,6 +30,16 @@ public class Diet {
             inverseJoinColumns = { @JoinColumn(name = "meal_id") }
     )
     private Set<Meal> meals = new HashSet<>();
+
+    @CreationTimestamp
+    private Date createdAt;
+
+    private Long createdBy;
+
+    @UpdateTimestamp
+    private Date updatedAt;
+
+    private Long updatedBy;
 
     Diet() {}
 }

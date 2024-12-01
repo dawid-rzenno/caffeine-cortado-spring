@@ -1,4 +1,4 @@
-package com.caffeinated.fitness.ingredient;
+package com.caffeine.cortado.ingredient;
 
 public class IngredientNotFoundException extends RuntimeException {
 

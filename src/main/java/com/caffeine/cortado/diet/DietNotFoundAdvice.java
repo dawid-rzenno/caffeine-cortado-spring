@@ -1,4 +1,4 @@
-package com.caffeinated.fitness.diet;
+package com.caffeine.cortado.diet;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,4 +1,4 @@
-package com.caffeinated.fitness.shoppingList;
+package com.caffeine.cortado.shoppingList;
 
 public class ShoppingListNotFoundException extends RuntimeException {
 
