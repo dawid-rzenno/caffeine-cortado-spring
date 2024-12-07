@@ -20,44 +20,40 @@ public class JwtService {
   public static final String SECRET = "357638792F423F4428472B4B6250655368566D597133743677397A2443264629";
 
   public String extractUsername(String token) {
-    return extractClaim(token, Claims::getSubject);
+    return this.extractClaim(token, Claims::getSubject);
   }
 
   public Date extractExpiration(String token) {
-    return extractClaim(token, Claims::getExpiration);
+    return this.extractClaim(token, Claims::getExpiration);
   }
 
   public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-    final Claims claims = extractAllClaims(token);
+    final Claims claims = this.extractAllClaims(token);
     return claimsResolver.apply(claims);
   }
 
   private Claims extractAllClaims(String token) {
     return Jwts
         .parserBuilder()
-        .setSigningKey(getSignKey())
+        .setSigningKey(this.getSignKey())
         .build()
         .parseClaimsJws(token)
         .getBody();
   }
 
   private Boolean isTokenExpired(String token) {
-    return extractExpiration(token).before(new Date());
+    return this.extractExpiration(token).before(new Date());
   }
 
   public Boolean validateToken(String token, UserDetails userDetails) {
-    final String username = extractUsername(token);
+    final String username = this.extractUsername(token);
     return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
   }
 
-
-
   public String GenerateToken(String username){
     Map<String, Object> claims = new HashMap<>();
-    return createToken(claims, username);
+    return this.createToken(claims, username);
   }
-
-
 
   private String createToken(Map<String, Object> claims, String username) {
 
@@ -65,7 +61,7 @@ public class JwtService {
         .setClaims(claims)
         .setSubject(username)
         .setIssuedAt(new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis()+1000*60*1))
+        .setExpiration(new Date(System.currentTimeMillis()+ 1000 * 60 * 1))
         .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
   }
 
