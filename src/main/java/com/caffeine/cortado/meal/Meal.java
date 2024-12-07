@@ -14,6 +14,7 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
+@Table(name = "meals")
 public class Meal {
 
     private @Id
@@ -25,7 +26,7 @@ public class Meal {
 
     @ManyToMany()
     @JoinTable(
-            name = "meal_ingredient",
+            name = "meals_ingredients",
             joinColumns = { @JoinColumn(name = "meal_id") },
             inverseJoinColumns = { @JoinColumn(name = "ingredient_id") }
     )

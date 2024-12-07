@@ -11,6 +11,7 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
+@Table(name = "user_roles")
 public class UserRole {
 
   private @Id
