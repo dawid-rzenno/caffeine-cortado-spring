@@ -1,5 +1,7 @@
-package com.caffeine.cortado.user;
+package com.caffeine.cortado.auth;
 
+import com.caffeine.cortado.user.User;
+import com.caffeine.cortado.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,18 +14,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   @Autowired
   private UserRepository userRepository;
 
-//  private static final Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
-
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-//    logger.debug("Entering in loadUserByUsername Method...");
     User user = userRepository.findByUsername(username);
     if (user == null) {
-//      logger.error("Username not found: " + login);
       throw new UsernameNotFoundException("could not found user..!!");
     }
-//    logger.info("User Authenticated Successfully..!!!");
+
     return new CustomUserDetails(user);
   }
 }

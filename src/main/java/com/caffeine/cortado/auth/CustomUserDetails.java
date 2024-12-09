@@ -1,5 +1,7 @@
-package com.caffeine.cortado.user;
+package com.caffeine.cortado.auth;
 
+import com.caffeine.cortado.user.User;
+import com.caffeine.cortado.user.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,8 +12,9 @@ import java.util.List;
 
 public class CustomUserDetails extends User implements UserDetails {
 
-  private String username;
-  private String password;
+  private final String username;
+  private final String password;
+
   Collection<? extends GrantedAuthority> authorities;
 
   public CustomUserDetails(User byUsername) {
@@ -19,7 +22,7 @@ public class CustomUserDetails extends User implements UserDetails {
     this.password = byUsername.getPassword();
     List<GrantedAuthority> auths = new ArrayList<>();
 
-    for(UserRole role : byUsername.getRoles()){
+    for (UserRole role : byUsername.getRoles()) {
 
       auths.add(new SimpleGrantedAuthority(role.getName().toUpperCase()));
     }

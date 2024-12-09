@@ -40,6 +40,4 @@ public class User {
   private Date updatedAt;
 
   private Long updatedBy;
-
-  User() {}
 }

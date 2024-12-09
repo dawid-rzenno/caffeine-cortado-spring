@@ -1,6 +1,5 @@
 package com.caffeine.cortado.auth;
 
-import com.caffeine.cortado.user.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

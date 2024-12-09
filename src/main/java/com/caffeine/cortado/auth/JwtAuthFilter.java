@@ -1,6 +1,5 @@
 package com.caffeine.cortado.auth;
 
-import com.caffeine.cortado.user.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
