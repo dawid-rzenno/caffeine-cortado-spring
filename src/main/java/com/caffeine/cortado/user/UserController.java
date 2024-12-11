@@ -3,28 +3,34 @@ package com.caffeine.cortado.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api/v1")
 public class UserController {
 
   @Autowired
-  private UserRepository userRepository;
+  private UserRepository repository;
 
   private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-  @PostMapping("/api/v1/user/create")
+  @GetMapping("/user/{id}")
+  User one(@PathVariable Long id) {
+
+    return repository.findById(id)
+        .orElseThrow(() -> new UserNotFoundException(id));
+  }
+
+  @PostMapping("/user/create")
   public User newUser(@RequestBody User newUser) {
-      User savedUser = new User();
+    User savedUser = new User();
 
-      savedUser.setUsername(newUser.getUsername());
+    savedUser.setUsername(newUser.getUsername());
 
-      savedUser.setPassword(
-          passwordEncoder.encode(newUser.getPassword())
-      );
+    savedUser.setPassword(
+        passwordEncoder.encode(newUser.getPassword())
+    );
 
-      return userRepository.save(savedUser);
+    return repository.save(savedUser);
   }
 }
